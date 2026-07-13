@@ -1,6 +1,7 @@
 package com.pedroodake.openfinanceapi.adapter.in.controller.request.usuario;
 
 import com.pedroodake.openfinanceapi.application.core.domain.enums.Perfil;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -9,6 +10,7 @@ public record DadosCadastroUsuario(
         String nome,
 
         @NotBlank
+        @Email
         String login,
 
         @NotBlank

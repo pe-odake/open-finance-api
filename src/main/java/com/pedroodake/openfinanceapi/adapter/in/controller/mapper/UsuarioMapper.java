@@ -13,9 +13,11 @@ public class UsuarioMapper {
                 null,
                 dados.nome(),
                 dados.login(),
-                dados.senha(), // AQUI
+                dados.senha(),
                 true,
-                dados.perfil()
+                dados.perfil(),
+                null,
+                null
         );
     }
 
@@ -25,7 +27,9 @@ public class UsuarioMapper {
                 usuario.getNome(),
                 usuario.getLogin(),
                 usuario.isAtivo(),
-                usuario.getPerfil()
+                usuario.getPerfil(),
+                usuario.getCriado_em(),
+                usuario.getAtualizado_em()
         );
     }
 
@@ -35,7 +39,9 @@ public class UsuarioMapper {
                 usuario.getNome(),
                 usuario.getLogin(),
                 usuario.isAtivo(),
-                usuario.getPerfil()
+                usuario.getPerfil(),
+                usuario.getCriado_em(),
+                usuario.getAtualizado_em()
         );
     }
 }

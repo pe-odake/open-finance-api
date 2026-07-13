@@ -13,7 +13,9 @@ public class UsuarioEntityMapper {
                 entity.getLogin(),
                 entity.getSenha(),
                 entity.isAtivo(),
-                entity.getPerfil()
+                entity.getPerfil(),
+                entity.getCriadoEm(),
+                entity.getAtualizadoEm()
         );
     }
 
@@ -24,7 +26,9 @@ public class UsuarioEntityMapper {
                 usuario.getLogin(),
                 usuario.getSenha(),
                 usuario.isAtivo(),
-                usuario.getPerfil()
+                usuario.getPerfil(),
+                usuario.getCriado_em(),
+                usuario.getAtualizado_em()
         );
     }
 }
