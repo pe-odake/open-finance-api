@@ -3,10 +3,7 @@ package com.pedroodake.openfinanceapi.adapter.out.repository.entity;
 import com.pedroodake.openfinanceapi.application.core.domain.enums.Perfil;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
@@ -22,8 +19,14 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@Setter
 @EqualsAndHashCode(of = "id")
 public class UsuarioEntity implements UserDetails {
+
+    public UsuarioEntity(Long id) {
+        this.id = id;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -77,4 +80,5 @@ public class UsuarioEntity implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 }

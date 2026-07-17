@@ -2,7 +2,6 @@ package com.pedroodake.openfinanceapi.adapter.in.controller.response.usuario;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.pedroodake.openfinanceapi.application.core.domain.enums.Perfil;
-
 import java.time.LocalDateTime;
 
 public record DadosDetalhamentoUsuario(
