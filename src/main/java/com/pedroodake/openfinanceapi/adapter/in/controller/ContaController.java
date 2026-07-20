@@ -4,13 +4,11 @@ import com.pedroodake.openfinanceapi.adapter.in.controller.request.conta.DadosCa
 import com.pedroodake.openfinanceapi.adapter.in.controller.response.conta.DadosDetalhamentoConta;
 import com.pedroodake.openfinanceapi.adapter.in.controller.response.conta.DadosListagemConta;
 import com.pedroodake.openfinanceapi.application.core.service.ContaService;
-import com.pedroodake.openfinanceapi.application.port.in.ModelDomainController;
+import com.pedroodake.openfinanceapi.application.port.in.*;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
-import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -22,13 +20,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/contas")
 @SecurityRequirement(name = "bearer-key")
-public class ContaController implements ModelDomainController<
-        DadosCadastroConta,
-        DadosListagemConta,
-        Void,
-        Void,
-        DadosDetalhamentoConta,
-        Long> {
+public class ContaController implements
+        CadastroController<DadosCadastroConta, DadosDetalhamentoConta>,
+        ListagemController<DadosListagemConta>,
+        ExclusaoController<Void, Long>,
+        DetalhamentoController<DadosDetalhamentoConta, Long> {
     private final ContaService service;
 
     public ContaController(ContaService service) { this.service = service; }
@@ -53,13 +49,6 @@ public class ContaController implements ModelDomainController<
     public ResponseEntity<Page<DadosListagemConta>> listar(Pageable paginacao) {
         List<DadosListagemConta> contas = service.listarContas();
         return ResponseEntity.ok(new org.springframework.data.domain.PageImpl<>(contas));
-    }
-
-    @Override
-    @PutMapping
-    @PreAuthorize("hasAnyRole('DEMO', 'DEFAULT')")
-    public ResponseEntity<DadosDetalhamentoConta> atualizar(@RequestBody @Valid Void dados) {
-        throw new UnsupportedOperationException("Atualização de contas não é permitida neste ecossistema.");
     }
 
     @Override
