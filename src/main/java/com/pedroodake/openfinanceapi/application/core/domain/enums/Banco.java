@@ -4,7 +4,7 @@ public enum Banco {
     ITAU,
     BRADESCO,
     NUBANK,
-    SANTADER,
+    SANTANDER,
     CAIXA,
     BANCO_DO_BRASIL,
     INTER,

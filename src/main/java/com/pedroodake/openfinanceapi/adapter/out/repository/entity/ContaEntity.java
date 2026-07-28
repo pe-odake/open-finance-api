@@ -19,6 +19,11 @@ import java.time.LocalDateTime;
 @Getter
 @EqualsAndHashCode(of = "id")
 public class ContaEntity {
+
+    public ContaEntity(Long id) {
+        this.id = id;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -44,8 +44,4 @@ public class Conta {
     public LocalDateTime getUltimaSincronizacao() { return ultimaSincronizacao; }
 
     public LocalDateTime getCriadaEm() { return criadaEm; }
-
-    public void delete(Conta conta) {
-
-    }
 }

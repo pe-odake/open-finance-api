@@ -55,4 +55,10 @@ public class ContaRepositoryImpl implements ContaRepository {
     public boolean existsById(Long id) {
         return jpaRepository.existsById(id);
     }
+
+    @Override
+    public void delete(Conta conta) {
+        ContaEntity entity = entityMapper.toEntity(conta);
+        jpaRepository.delete(entity);
+    }
 }

@@ -44,7 +44,7 @@ public class ContaService {
     public DadosDetalhamentoConta detalharConta(Long id) {
         Conta conta = repository.findById(id)
                 .orElseThrow(() ->
-                        new ContaNotFoundException("ID do usuário informado não existe!"));
+                        new ContaNotFoundException("ID da conta informada não existe!"));
         return mapper.toDetailsDTO(conta);
     }
 
@@ -52,7 +52,7 @@ public class ContaService {
     public void excluirConta(Long id) {
         Conta conta = repository.findById(id)
                 .orElseThrow(() ->
-                        new ContaNotFoundException("ID do usuário informado não existe!"));
-        conta.delete(conta);
+                        new ContaNotFoundException("ID da conta informada não existe!"));
+        repository.delete(conta);
     }
 }

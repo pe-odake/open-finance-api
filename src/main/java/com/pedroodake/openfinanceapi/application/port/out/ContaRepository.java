@@ -16,4 +16,6 @@ public interface ContaRepository {
     Conta getReferenceById(Long id);
 
     boolean existsById(Long id);
+
+    void delete(Conta conta);
 }
