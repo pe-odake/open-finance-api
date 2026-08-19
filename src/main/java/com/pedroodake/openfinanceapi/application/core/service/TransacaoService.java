@@ -4,6 +4,7 @@ import com.pedroodake.openfinanceapi.adapter.in.controller.mapper.TransacaoMappe
 import com.pedroodake.openfinanceapi.adapter.in.controller.request.transacao.DadosCadastroTransacao;
 import com.pedroodake.openfinanceapi.adapter.in.controller.response.transacao.DadosDetalhamentoTransacao;
 import com.pedroodake.openfinanceapi.adapter.in.controller.response.transacao.DadosListagemTransacao;
+import com.pedroodake.openfinanceapi.adapter.in.controller.response.transacao.FiltroPaginacaoTransacao;
 import com.pedroodake.openfinanceapi.application.core.domain.model.Transacao;
 import com.pedroodake.openfinanceapi.application.port.out.TransacaoRepository;
 import com.pedroodake.openfinanceapi.exception.type.transacao.TransacaoNotFoundException;
@@ -31,9 +32,9 @@ public class TransacaoService {
         return mapper.toDetailsDTO(saved);
     }
 
-    public Page<DadosListagemTransacao> listarTransacoes(Long usuarioId, Pageable paginacao) {
+    public Page<DadosListagemTransacao> listarTransacoes(Long usuarioId, Pageable paginacao, FiltroPaginacaoTransacao filtro) {
         return repository
-                .findAllByUsuarioIdOrderByDataTransacaoDesc(usuarioId, paginacao)
+                .findAllByUsuarioIdOrderByDataTransacaoDesc(usuarioId, paginacao, filtro)
                 .map(mapper::toListDTO);
     }
 

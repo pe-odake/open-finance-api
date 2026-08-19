@@ -1,12 +1,15 @@
 package com.pedroodake.openfinanceapi.adapter.out.repository;
 
+import com.pedroodake.openfinanceapi.adapter.in.controller.response.transacao.FiltroPaginacaoTransacao;
 import com.pedroodake.openfinanceapi.adapter.out.repository.entity.TransacaoEntity;
 import com.pedroodake.openfinanceapi.adapter.out.repository.mapper.TransacaoEntityMapper;
 import com.pedroodake.openfinanceapi.adapter.out.repository.persistence.TransacaoJpaRepository;
+import com.pedroodake.openfinanceapi.adapter.out.repository.specification.TransacaoSpecification;
 import com.pedroodake.openfinanceapi.application.core.domain.model.Transacao;
 import com.pedroodake.openfinanceapi.application.port.out.TransacaoRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -24,9 +27,10 @@ public class TransacaoRepositoryImpl implements TransacaoRepository {
     }
 
     @Override
-    public Page<Transacao> findAllByUsuarioIdOrderByDataTransacaoDesc(Long usuarioId, Pageable paginacao) {
+    public Page<Transacao> findAllByUsuarioIdOrderByDataTransacaoDesc(Long usuarioId, Pageable paginacao, FiltroPaginacaoTransacao filtro) {
+        Specification<TransacaoEntity> spec = TransacaoSpecification.filtrar(usuarioId, filtro);
         return jpaRepository
-                .findAllByContaUsuarioIdOrderByDataTransacaoDesc(usuarioId, paginacao)
+                .findAll(spec, paginacao)
                 .map(entityMapper::toDomain);
     }
 
